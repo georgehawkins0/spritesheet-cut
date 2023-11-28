@@ -1,5 +1,6 @@
 from PIL import Image
 import argparse
+import os
 
 def crop(filename:str, xOffset:int, yOffset:int, width:int, height:int, numX:int, numY:int, gapX:int=0, gapY:int=0):
     """
@@ -14,6 +15,8 @@ def crop(filename:str, xOffset:int, yOffset:int, width:int, height:int, numX:int
     gapX: The gap between each tile in the x direction
     gapY: The gap between each tile in the y direction
     """
+    if not os.path.isdir('out'):
+        os.mkdir('out')
     img = Image.open(filename)
     iterations =0
     for x in range(xOffset, width*numX+xOffset, width+gapX):
